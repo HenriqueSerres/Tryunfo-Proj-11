@@ -15,9 +15,9 @@ export default class Card extends React.Component {
     } = this.props;
     return (
       <section>
-        <span data-testid="name-card">
+        <h3 data-testid="name-card">
           { cardName }
-        </span>
+        </h3>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">
           { cardDescription }
@@ -31,10 +31,10 @@ export default class Card extends React.Component {
         <p data-testid="attr3-card">
           { cardAttr3 }
         </p>
-        <span data-testid="rare-card">
+        <p data-testid="rare-card">
           { cardRare }
-        </span>
-        {cardTrunfo && <span data-testid="trunfo-card">Super Trunfo</span>}
+        </p>
+        {cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p>}
       </section>
     );
   }

@@ -4,27 +4,39 @@ import Input from './Input';
 
 export default class Form extends React.Component {
   render() {
-    const { cardName, cardDescription, cardAttr1,
-      cardAttr2, cardAttr3, cardImage, cardRare,
-      cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick } = this.props;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick,
+    } = this.props;
     return (
-      <>
+      <form>
         <Input
           type="text"
           dataTest="name-input"
           value={ cardName }
           handleChange={ onInputChange }
+          name="cardName"
         />
         <Input
           type="textarea"
           dataTest="description-input"
           value={ cardDescription }
           handleChange={ onInputChange }
+          name="cardDescription"
         />
         <Input
           type="number"
           dataTest="attr1-input"
+          name="cardAttr1"
           value={ cardAttr1 }
           handleChange={ onInputChange }
         />
@@ -33,18 +45,21 @@ export default class Form extends React.Component {
           dataTest="attr2-input"
           value={ cardAttr2 }
           handleChange={ onInputChange }
+          name="cardAttr2"
         />
         <Input
           type="number"
           dataTest="attr3-input"
           value={ cardAttr3 }
           handleChange={ onInputChange }
+          name="cardAttr3"
         />
         <Input
           type="text"
           dataTest="image-input"
           value={ cardImage }
           handleChange={ onInputChange }
+          name="cardImage"
         />
         <label htmlFor="rare-input">
           <select
@@ -52,6 +67,7 @@ export default class Form extends React.Component {
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
+            name="cardRare"
           >
             <option value="normal">normal</option>
             <option value="raro">raro</option>
@@ -63,6 +79,8 @@ export default class Form extends React.Component {
           data-testid="trunfo-input"
           checked={ cardTrunfo }
           onChange={ onInputChange }
+          value={ cardTrunfo }
+          name="cardTrunfo"
         />
         <button
           type="submit"
@@ -73,7 +91,7 @@ export default class Form extends React.Component {
           Salvar
 
         </button>
-      </>
+      </form>
     );
   }
 }
