@@ -56,18 +56,8 @@ class App extends React.Component {
       const { cardName, cardDescription, cardAttr1,
         cardAttr2, cardAttr3, cardImage, cardRare,
         cardTrunfo, armazenador } = this.state;
-      this.setState({
-        cardName: '',
-        cardDescription: '',
-        cardAttr1: '0',
-        cardAttr2: '0',
-        cardAttr3: '0',
-        cardImage: '',
-        cardRare: 'normal',
-        cardTrunfo: false,
-        hasTrunfo: true,
-        isSaveButtonDisabled: true,
-        armazenador: armazenador.concat([{
+      this.setState((card) => ({
+        armazenador: [...armazenador, {
           cardName,
           cardDescription,
           cardAttr1,
@@ -76,8 +66,18 @@ class App extends React.Component {
           cardImage,
           cardRare,
           cardTrunfo,
-        }]),
-      });
+          armazenador,
+        }],
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        hasTrunfo: cardTrunfo ? true : card.hasTrunfo,
+      }));
     }
 
     // addNewCard = (armazenador) => {
@@ -85,6 +85,16 @@ class App extends React.Component {
     //     armazenador: [...prevState, armazenador]
     //   });
     // }
+    deletCard = (elem) => {
+      const { armazenador } = this.state;
+      const cards = [...armazenador];
+      const indexCards = armazenador[elem];
+      cards.splice(elem, 1);
+      this.setState({
+        armazenador: cards,
+        hasTrunfo: indexCards.cardTrunfo ? false : elem.hasTrunfo,
+      });
+    }
 
     render() {
       const { cardName, cardDescription, cardAttr1,
@@ -119,20 +129,22 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
             armazenador={ armazenador }
           />
-          {armazenador.map((card) => (
-            <li key={ card.cardName }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-
-            </li>
+          {armazenador.map((card, index) => (
+            <div key={ card.cardName }>
+              <p>{ card.cardName }</p>
+              <p>{ card.cardDescription }</p>
+              <p>{ card.cardAttr1 }</p>
+              <p>{ card.cardAttr2 }</p>
+              <p>{ card.cardAttr3 }</p>
+              <p>{ card.cardImage }</p>
+              <button
+                type="button"
+                data-testid="delete-button"
+                onClick={ () => this.deletCard(index) }
+              >
+                Excluir
+              </button>
+            </div>
           ))}
         </div>
       );
