@@ -15,6 +15,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
       armazenador: [],
     };
@@ -64,6 +65,7 @@ class App extends React.Component {
         cardImage: '',
         cardRare: 'normal',
         cardTrunfo: false,
+        hasTrunfo: true,
         isSaveButtonDisabled: true,
         armazenador: armazenador.concat([{
           cardName,
@@ -81,7 +83,7 @@ class App extends React.Component {
     render() {
       const { cardName, cardDescription, cardAttr1,
         cardAttr2, cardAttr3, cardImage, cardRare,
-        cardTrunfo, isSaveButtonDisabled } = this.state;
+        cardTrunfo, isSaveButtonDisabled, hasTrunfo } = this.state;
       return (
         <div>
           <h1>Tryunfo</h1>
@@ -94,6 +96,7 @@ class App extends React.Component {
             cardImage={ cardImage }
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
+            hasTrunfo={ hasTrunfo }
             onInputChange={ this.handleChange }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             handleChange={ this.handleChange }
