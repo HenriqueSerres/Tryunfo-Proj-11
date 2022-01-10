@@ -80,10 +80,16 @@ class App extends React.Component {
       });
     }
 
+    // addNewCard = (armazenador) => {
+    //   this.setState((prevState) => {
+    //     armazenador: [...prevState, armazenador]
+    //   });
+    // }
+
     render() {
       const { cardName, cardDescription, cardAttr1,
         cardAttr2, cardAttr3, cardImage, cardRare,
-        cardTrunfo, isSaveButtonDisabled, hasTrunfo } = this.state;
+        cardTrunfo, isSaveButtonDisabled, hasTrunfo, armazenador } = this.state;
       return (
         <div>
           <h1>Tryunfo</h1>
@@ -111,7 +117,23 @@ class App extends React.Component {
             cardImage={ cardImage }
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
+            armazenador={ armazenador }
           />
+          {armazenador.map((card) => (
+            <li key={ card.cardName }>
+              <Card
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+
+            </li>
+          ))}
         </div>
       );
     }
